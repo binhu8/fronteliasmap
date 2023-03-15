@@ -1,0 +1,63 @@
+.container-full{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: url('../../../assets/background.png');
+
+    video{
+        width: 100%;
+    }
+
+    .container-cadastro{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: #0000003f;
+        padding: 2rem;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+
+        .form{
+            width: 500px;
+            height: 100%;
+            background: #fff;
+            border-radius: 5px;
+            padding: 1rem;
+            overflow: auto;
+
+            &::-webkit-scrollbar{
+                display: none;
+            }
+
+            h1{
+                font-size: 1.2rem;
+                color: #7e7e7e;
+            }
+
+            mat-divider{
+                border-color: #e7e7e7;
+            }
+
+            mat-form-field{
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 760px){
+    .container-full{
+        padding: 0;
+
+        .container-cadastro{
+            padding: 0;
+        }
+        .form{
+            padding: 0;
+        }
+    }
+    }

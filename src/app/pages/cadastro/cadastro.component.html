@@ -1,0 +1,102 @@
+<div class="container-full " [formGroup]="form">
+    <div class="container-cadastro">
+        <div class="form">
+            <div class="row">
+                <div class="col-auto">
+                    <h1>Cadastrar uma nova rede</h1>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome da rede</mat-label>
+                        <input formControlName='rede' type="text" matInput>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-auto">
+                    <button mat-button color="primary" (click)="addLoja()">
+                        <mat-icon>add</mat-icon>
+                        Adicionar loja
+                    </button>
+                </div>
+            </div>
+            
+            <div class="row mt-3" formArrayName="lojas">
+                <div class="col-12">
+                    <mat-accordion  >
+                        <mat-expansion-panel  *ngFor="let lojaF of lojas.controls; index as i ">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title> Loja {{i + 1}}</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="form-group"  [formGroupName]="i" >
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Nome da loja</mat-label>
+                                            <input formControlName='nome' type="text" matInput>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Contato</mat-label>
+                                            <input mask="(00)00000-0000" formControlName="contato" matInput type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row" formGroupName="endereco">
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>CEP</mat-label>
+                                            <input #cep (blur)="getAdressByCEP(cep.value.replace('-', ''), lojaF)" mask="00000-000" formControlName='cep' type="text" matInput>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Logradouro</mat-label>
+                                            <input  formControlName='logradouro' type="text" matInput>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Numero</mat-label>
+                                            <input  formControlName='numero' type="text" matInput >
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Bairro</mat-label>
+                                            <input  formControlName='bairro' type="text" matInput >
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Cidade</mat-label>
+                                            <input  formControlName='localidade' type="text" matInput >
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Estado</mat-label>
+                                            <input  formControlName='uf' type="text" matInput >
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-auto">
+                    <button (click)="addRede()" [disabled]="!form.valid" *ngIf="lojas.controls.length > 0" mat-flat-button color="primary">
+                        Cadastrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
