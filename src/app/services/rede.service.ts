@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RedeService {
 
-  url = 'http://localhost:4005/'
+  url = 'https://eliasmap.vercel.app/'
   constructor(
     private http: HttpClient
   ) { }
